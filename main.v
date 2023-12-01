@@ -7,14 +7,14 @@ import solutions
 
 fn main() {
 	now := time.now()
-	day := if now.month == 12 && now.day <= 25 {
+	default_day := if now.month == 12 && now.day <= 25 {
 		now.day
 	} else {
 		1
 	}
 
 	mut cmd := cli.Command{
-		name: 'aoc23'
+		name: 'advent'
 		description: 'Advent of Code 2023 solutions by Carson Myers'
 		version: '0.1.0'
 	}
@@ -25,17 +25,35 @@ fn main() {
 			name: 'day'
 			abbrev: 'd'
 			description: 'Select a day of the challenge. Defaults to the current day (if challenge is in progress) or day 1'
-		},
-		cli.Flag{
-			flag: .int
-			name: 'part'
-			abbrev: 'p'
-			description: 'Select a challenge part. Defaults to part 1'
+			default_value: [default_day.str()]
 		},
 	])
-	// cmd.parse(os.args)
 
-	input := os.read_file('./data/day-1-input')!
-	solution_1 := solutions.run(input, 1, 2)!
-	println('solution part 1: ${solution_1}')
+	input_cmd := cli.Command{
+		name: 'input'
+		description: 'Print the challenge input for the specified day'
+		execute: fn (cmd cli.Command) ! {
+			day := cmd.root().flags.get_int('day')!
+			input := load_input(day)!
+			print(input)
+		}
+	}
+
+	solve_cmd := cli.Command{
+		name: 'solve'
+		description: 'Run the solution for the specified day'
+		execute: fn (cmd cli.Command) ! {
+			day := cmd.root().flags.get_int('day')!
+			input := load_input(day)!
+
+			level_1 := solutions.run(input, day, 1) or { 'no solution: ${err}' }
+			level_2 := solutions.run(input, day, 2) or { 'no solution: ${err}' }
+
+			println('level 1: ${level_1}')
+			println('level 2: ${level_2}')
+		}
+	}
+
+	cmd.add_commands([input_cmd, solve_cmd])
+	cmd.parse(os.args)
 }

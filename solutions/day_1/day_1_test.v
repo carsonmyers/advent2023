@@ -1,16 +1,16 @@
 module day_1
 
-fn test_part_1() {
+fn test_level_1() {
 	input := '1abc2
 		pqr3stu8vwx
 		a1b2c3d4e5f
 		treb7uchet'.replace('\t', '')
 
-	solution := part_1(input)!
+	solution := level_1(input)!
 	assert solution == '142'
 }
 
-fn test_part_2() {
+fn test_level_2() {
 	input := 'two1nine
 		eightwothree
 		abcone2threexyz
@@ -20,6 +20,6 @@ fn test_part_2() {
 		7pqrstsixteen'.replace('\t',
 		'')
 
-	solution := part_2(input)!
+	solution := level_2(input)!
 	assert solution == '281'
 }

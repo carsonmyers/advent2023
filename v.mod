@@ -1,5 +1,5 @@
 Module {
-	name: 'aoc23'
+	name: 'advent23'
 	description: ''
 	version: '0.0.1'
 	license: 'MIT'

@@ -5,13 +5,13 @@ import regex
 
 pub fn run(input string, level int) !string {
 	if level == 1 {
-		return part_1(input)
+		return level_1(input)
 	} else {
-		return part_2(input)
+		return level_2(input)
 	}
 }
 
-pub fn part_1(input string) !string {
+pub fn level_1(input string) !string {
 	nums := input.split('\n').filter(fn (line string) bool {
 		return line.len > 0
 	}).map(fn (line string) i64 {
@@ -30,7 +30,7 @@ pub fn part_1(input string) !string {
 	return arrays.sum(nums)!.str()
 }
 
-pub fn part_2(input string) !string {
+pub fn level_2(input string) !string {
 	mut pattern := regex.regex_opt(r'((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|\d)')!
 
 	nums := input.split('\n').filter(fn (line string) bool {
@@ -67,7 +67,9 @@ pub fn part_2(input string) !string {
 			}
 		})
 
-		assert digits.len > 0
+		if digits.len == 0 {
+			panic('no digits found in line "${line}"')
+		}
 		sum := digits[digits.len - 1] + digits[0] * 10
 
 		return sum
