@@ -1,0 +1,7 @@
+.session
+data/*-input
+data/*-solution
+.idea/
+.DS_STORE
+.editorconfig
+
