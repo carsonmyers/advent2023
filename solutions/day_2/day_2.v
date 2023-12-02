@@ -126,6 +126,6 @@ fn parse_sample(input string) !Sample {
 	return Sample{red, green, blue}
 }
 
-fn (s Sample) power() int {
+fn (s &Sample) power() int {
 	return s.red * s.green * s.blue
 }

@@ -68,12 +68,12 @@ pub mut:
 fn new_digit_matcher() !DigitMatcher {
 	mut pattern := regex.regex_opt(r'((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|\d)')!
 
-	DigitMatcher{pattern}
+	return DigitMatcher{pattern}
 }
 
 // match_digit_strings finds all non-overlapping digits and english words which
 // spell out digits in a specified string
-fn (mut m &DigitMatcher) match_digit_strings(line string) []i64 {
+fn (mut m DigitMatcher) match_digit_strings(line string) []i64 {
 	// all matching (potentially overlapping) slices of the input
 	mut matches := []string{}
 
