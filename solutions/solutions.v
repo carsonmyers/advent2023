@@ -2,6 +2,7 @@ module solutions
 
 import solutions.day_1
 import solutions.day_2
+import solutions.day_3
 
 pub fn run(input string, day int, level int) !string {
 	assert day > 0 && day <= 25
@@ -11,6 +12,8 @@ pub fn run(input string, day int, level int) !string {
 		return day_1.run(input, level)
 	} else if day == 2 {
 		return day_2.run(input, level)
+	} else if day == 3 {
+		return day_3.run(input, level)
 	} else {
 		return error('not implemented')
 	}

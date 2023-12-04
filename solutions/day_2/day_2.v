@@ -26,7 +26,7 @@ fn level_1(input string) !string {
 		return line.len > 0
 	})
 
-	mut game_ids := []Game{}
+	mut game_ids := []int{}
 	for line in lines {
 		game := parse_game(line)!
 
