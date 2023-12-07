@@ -10,6 +10,7 @@ fn test_level_1() {
 
 	solution := level_1(input)!
 	assert solution == '6440'
+	assert false
 }
 
 fn test_level_2() {

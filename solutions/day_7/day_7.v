@@ -27,9 +27,12 @@ fn play_game(input string, with_jokers bool) !i64 {
 
 	hands.sort_with_compare(sort_hands)
 
+	println('\nnew game (jokers: ${with_jokers})')
 	mut wins := []i64{}
 	for i, hand in hands {
-		wins << hand.bid * (i + 1)
+		win := hand.bid * (i + 1)
+		println('${hand.cards.str()}\t${hand.kind}\tbid: ${hand.bid:03}\twin: ${win}')
+		wins << win
 	}
 
 	return arrays.sum(wins)!
