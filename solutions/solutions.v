@@ -6,6 +6,7 @@ import solutions.day_3
 import solutions.day_4
 import solutions.day_5
 import solutions.day_6
+import solutions.day_7
 
 pub fn run(input string, day int, level int) !string {
 	assert day > 0 && day <= 25
@@ -23,6 +24,8 @@ pub fn run(input string, day int, level int) !string {
 		return day_5.run(input, level)
 	} else if day == 6 {
 		return day_6.run(input, level)
+	} else if day == 7 {
+		return day_7.run(input, level)
 	} else {
 		return error('not implemented')
 	}
