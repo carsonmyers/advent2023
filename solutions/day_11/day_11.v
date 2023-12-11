@@ -121,7 +121,7 @@ fn mult_gaps(nums map[int]bool, mult i64) map[int]i64 {
 
 		// any galaxies in row/col `num` will be mapped to a more distant
 		// location based on how many preceding rows/cols are empty
-		res[num] = num + (missing * mult - 1)
+		res[num] = num + (missing * (mult - 1))
 	}
 
 	return res
